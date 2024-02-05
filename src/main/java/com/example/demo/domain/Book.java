@@ -15,7 +15,10 @@ public class Book {
     @GeneratedValue
     private Long id;
     private String name;
+    @Lob
+    private byte[] image;
 
     @ManyToMany(mappedBy = "books")
     private Set<Collection> collections;
+
 }
