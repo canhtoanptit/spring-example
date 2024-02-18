@@ -1,13 +1,12 @@
 package com.example.demo.domain;
 
-import com.example.demo.domain.anotation.GeneratedUuidValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Formula;
-import org.hibernate.tuple.GenerationTiming;
 
 import java.util.Currency;
 import java.util.UUID;
@@ -30,9 +29,12 @@ public class Account {
     @Formula(value = "credit * rate")
     private Double interest;
 
-    @GeneratedUuidValue( timing = GenerationTiming.INSERT )
     public UUID createdUuid;
 
-    @GeneratedUuidValue( timing = GenerationTiming.ALWAYS )
     public UUID updatedUuid;
+
+    @ManyToOne
+    private Client client;
+
+    private String description;
 }
