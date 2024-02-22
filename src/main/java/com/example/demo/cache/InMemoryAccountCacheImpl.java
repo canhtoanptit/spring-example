@@ -1,12 +1,20 @@
 package com.example.demo.cache;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
 public class InMemoryAccountCacheImpl implements AccountCache {
 
-    private final ConcurrentHashMap<Long, Account> accountConcurrentHashMap = new ConcurrentHashMap<>();
+    private final int size;
+    private final Map<Long, Account> accountConcurrentHashMap;
+
+
+    public InMemoryAccountCacheImpl(int size) {
+        this.size = size;
+        this.accountConcurrentHashMap = new ConcurrentHashMap<>(size);
+    }
 
     @Override
     public Account getAccountById(long id) {
