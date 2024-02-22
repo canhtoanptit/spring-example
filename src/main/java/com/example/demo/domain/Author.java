@@ -5,6 +5,7 @@ import com.example.demo.constant.PhoneType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.PartitionKey;
 
 import java.time.LocalDate;
 
@@ -22,6 +23,9 @@ public class Author {
     private Phone phone;
 
     private LocalDate birthday;
+
+    @PartitionKey
+    private String tenantKey;
 
     @Enumerated
     @Convert(converter = Gender.GenderConverter.class)
